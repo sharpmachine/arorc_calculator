@@ -4,6 +4,7 @@ import './SegmentedControl.css';
 const SegmentedControl = ({
     segments,
     callback,
+    label,
     defaultIndex = 0,
     controlRef
 }) => {
@@ -25,6 +26,7 @@ const SegmentedControl = ({
 
     return (
         <div className="controls-container" ref={controlRef}>
+            <div className="control-label">{label}</div>
             <div className={`controls ${componentReady.current ? 'ready' : 'idle'}`}>
                 {segments.map((item, i) => (
 
