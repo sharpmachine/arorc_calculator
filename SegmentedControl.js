@@ -29,7 +29,6 @@ const SegmentedControl = ({
             <div className="control-label">{label}</div>
             <div className={`controls ${componentReady.current ? 'ready' : 'idle'}`}>
                 {segments.map((item, i) => (
-
                     <button 
                         key={item.value}
                         className={`segment ${i === activeIndex ? 'active': 'inactive'}`}

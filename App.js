@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useRef, useState, useEffect } from "react";
 import { StyleSheet, Text, View } from 'react-native';
 import  SegmentedControl from './SegmentedControl';
+import TextField from './TextField';
 
 export default function App() {
   return (
@@ -36,7 +37,7 @@ export default function App() {
         ]}
       />
       <SegmentedControl
-        name="trade"
+        name="Spread"
         callback={(val) => console.log(val)}
         defaultIndex={0}
         controlRef={useRef()}
@@ -64,6 +65,16 @@ export default function App() {
           }
         ]}
       />
+
+      <TextField
+        name="dte"
+        defaultValue={3}
+        leadingSymbol="$"
+        callback={(val) => console.log(val)}
+        controlRef={useRef()}
+        label="Days to Expiration"
+      />
+
       <StatusBar style="auto" />
     </View>
   );
