@@ -6,7 +6,6 @@ import  SegmentedControl from './SegmentedControl';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your sapp!</Text>
       <SegmentedControl
         name="group-1"
         callback={(val) => console.log(val)}

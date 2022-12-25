@@ -6,7 +6,7 @@
   body {
     background: #f1f1f1;
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Work Sans";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -26,10 +26,9 @@
   .controls {
     display: inline-flex;
     justify-content: space-between;
-    background: white;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    max-width: 500px;
+    background: #E9ECEF;
+    border-radius: 8px;
+    /* max-width: 500px; */
     padding: 12px;
     margin: auto;
     overflow: hidden;
@@ -66,12 +65,12 @@
   }
   
   .segment.active label {
-    color: #fff;
+    color: rgba(0, 0, 0, 0.87);
   }
   
   .controls::before {
     content: "";
-    background: #5465ff;
+    background: #C0A047;
     border-radius: 8px;
     width: var(--highlight-width);
     transform: translateX(var(--highlight-x-pos));
