@@ -1,88 +1,42 @@
-* {
-    box-sizing: border-box;
-  }
-  
-  /* Demo only */
-  body {
-    background: #f1f1f1;
-    margin: 0;
-    font-family: "Work Sans";
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  .selected-item {
-    text-align: center;
-  }
-  
+
   .controls-container {
-    --highlight-width: auto;
-    --highlight-x-pos: 0;
-  
-    display: flex;
-    margin: 100px 0 25px;
+    width: 100%;
   }
   
   .controls {
-    display: inline-flex;
-    justify-content: space-between;
     background: #E9ECEF;
+    border: 1px solid #DEE2E6;
     border-radius: 8px;
-    /* max-width: 500px; */
-    padding: 12px;
-    margin: auto;
-    overflow: hidden;
-    position: relative;
-  }
-  
-  .controls input {
-    opacity: 0;
-    margin: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    width: 100%;
-    cursor: pointer;
-    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 4px;
+    gap: 4px;
   }
   
   .segment {
-    /* width: 100%; uncomment for each segment to have matching width */
-    min-width: 120px;
-    position: relative;
-    text-align: center;
-    z-index: 1;
-  }
-  
-  .segment label {
-    cursor: pointer;
-    display: block;
-    font-weight: 700;
-    padding: 10px;
-    transition: color 0.5s ease;
-  }
-  
-  .segment.active label {
-    color: rgba(0, 0, 0, 0.87);
-  }
-  
-  .controls::before {
-    content: "";
-    background: #C0A047;
+    border-width: 0;
+    height: 40px;
+    padding: 4px 8px;
     border-radius: 8px;
-    width: var(--highlight-width);
-    transform: translateX(var(--highlight-x-pos));
-    position: absolute;
-    top: 8px;
-    bottom: 8px;
-    left: 0;
-    z-index: 0;
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: #E9ECEF;
+    flex: none;
+    order: 3;
+    align-self: stretch;
+    flex-grow: 1;
+    transition: background 0.1s ease;
   }
-  
-  /* Only allow transitions once component is ready */
-  .controls.ready::before {
-    transition: transform 0.3s ease, width 0.3s ease;
+
+  .segment.active {
+    background: #C0A047;
+    transition: background 0.1s ease;
   }
-  
