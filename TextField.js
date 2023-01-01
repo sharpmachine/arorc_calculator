@@ -1,30 +1,43 @@
 import { useRef, useState, useEffect } from "react";
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 import './TextField.css';
 
 const TextField = ({
-    // segments,
     callback,
     label,
+    name,
     defaultValue = 0,
-    leadingSymbol = '$',
-    defaultIndex = 0,
+    showCurrencySign = false,
     controlRef
 }) => {
-    const [activeIndex, setActiveIndex] = useState(defaultIndex);
     const [value, setValue] = useState(defaultValue)
     const componentReady = useRef();
 
-    const onInputChange = (event) => {
-        setValue(event.target.value);
+    const onInputChange = (value) => {
+        setValue(value);
+        callback(name, value);
+    }
+
+    const onSliderChange = (newValue) => {
+        setValue(newValue);
+        callback(name, newValue);
     }
 
     const incrementUp = (value) => {
         setValue(++value);
+        callback(name, value);
     }
 
     const incrementDown = (value) => {
-
         setValue(--value);
+        callback(name, value);
+    }
+
+    const onBackspace = (e) => {
+        if (e.keyCode === 8) {
+            setValue(0);
+        }
     }
 
     useEffect(() => {
@@ -33,39 +46,37 @@ const TextField = ({
 
     useEffect(() => {
         // const activeSegmentRef = segments[activeIndex].ref;
-    }, [activeIndex, callback]);
+    }, [callback]);
 
     return (
         <div className="text-field-container" ref={controlRef}>
             <div className="text-field-label">{label}</div>
             <div className={`text-field ${componentReady.current ? 'ready' : 'idle'}`}>
-                <input type="number" 
-                value={value}
-                min="0"
-                onChange={onInputChange} />
+                {showCurrencySign ? 
+                    <div className="leading-symbol">$</div>  
+                : null }
+                <input 
+                    type="number" 
+                    value={value}
+                    min="0"
+                    onChange={(e) => onInputChange(e.target.value)}
+                    onKeyDown={onBackspace} />
                 <div className="nudgers">
                     <div 
-                        className="nudger nudge-up"
-                        onClick={()=> incrementUp(value)}
-                    >+</div>
-                    <div 
                         className="nudger nudge-down"
-                        onClick={()=> incrementDown(value)}
-                    >-</div>
+                        onClick={()=> incrementDown(value)}>-</div>
+                    <div 
+                        className="nudger nudge-up"
+                        onClick={()=> incrementUp(value)}>+</div>
                 </div>
             </div>
-            <div className="slider">Slide me in</div>
-                {/* {segments.map((item, i) => (
-
-                    <button 
-                        key={item.value}
-                        className={`segment ${i === activeIndex ? 'active': 'inactive'}`}
-                        ref={item.ref} 
-                        onClick={() => onInputChange(item.value, i)}>
-                        {item.label}
-                    </button> 
-                ))} */}
-            
+            <div className="slider">
+                <Slider 
+                    defaultValue={value}
+                    value={value}
+                    onChange={onSliderChange}
+                     />
+            </div>
         </div>
     );
 }
