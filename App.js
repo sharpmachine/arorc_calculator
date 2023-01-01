@@ -3,6 +3,9 @@ import { useRef, useState, useEffect } from "react";
 import { StyleSheet, Text, View } from 'react-native';
 import  SegmentedControl from './SegmentedControl';
 import TextField from './TextField';
+import './App.css';
+import good from './assets/good.png';
+import bad from './assets/bad.png';
 
 export default function App() {
   
@@ -111,7 +114,7 @@ export default function App() {
 }, []);
   
   return (
-    <View style={styles.container}>
+    <View style={styles.container} className="test">
       
       <SegmentedControl
         name="type"
@@ -164,8 +167,18 @@ export default function App() {
       />
       <div>{JSON.stringify(trade, null, 2)}</div>
       <div>{JSON.stringify(arorc, null, 2)}</div>
-      <div>{Math.floor(arorc.arorc)}% <span>ARORC</span></div>
-      <div>{trade.type} minimal return: {trade.type == "BCS" || trade.type == "BPS" ? "48%" : "20%"}</div>
+
+      <div className="result">
+        <div className='result-arorc'>
+          <img src={trade.type == "BPS" ? good : bad} alt="" width="32" />
+          <span className='result-percentage'>{Math.floor(arorc.arorc)}%</span>
+          <span className='result-label'>ARORC</span>
+        </div>
+        <div className='result-marr'>
+          {trade.type} minimal return: {trade.type == "BCS" || trade.type == "BPS" ? "48%" : "20%"}
+        </div>
+      </div>
+      
 
       <StatusBar style="auto" />
     </View>
@@ -179,8 +192,6 @@ const styles = StyleSheet.create({
     paddingLeft: 32,
     paddingRight: 32,
     paddingTop: 24,
-    gap: 16,
-    fontFamily: 'Work Sans',
-    fontStyle: 'normal'
+    gap: 16
   },
 });
