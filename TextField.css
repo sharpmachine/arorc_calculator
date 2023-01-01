@@ -5,6 +5,7 @@
   gap: 8px;
 }
 
+/* NUDGERS */
 .nudgers {
   display: flex;
   flex-direction: row;
@@ -28,13 +29,14 @@
   flex-grow: 0;
 }
 
+/* INPUT */
 .text-field {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 4px 8px 4px 16px;
-  gap: 8px;
+  /* gap: 8px; */
   height: 48px;
   background: #FFFFFF;
   border: 1px solid #DEE2E6;
@@ -57,6 +59,7 @@
   flex: none;
   order: 0;
   flex-grow: 1;
+  padding: 0;
 }
 
 .text-field input:focus {
@@ -64,15 +67,17 @@
 }
 
 .text-field-label {
-  font-family: 'Work Sans';
-  font-style: normal;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.text-field-leading-symbol,
+.text-field-label {
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
   color: #111214;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
 }
 
 /* SLIDER */
