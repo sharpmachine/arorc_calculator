@@ -67,7 +67,8 @@ const TextField = ({
                 <div className="nudgers">
                     <div 
                         className="nudger nudge-down"
-                        onClick={()=> incrementDown(value)}>-</div>
+                        onClick={()=> incrementDown(value)}>
+                        </div>
                     <div 
                         className="nudger nudge-up"
                         onClick={()=> incrementUp(value)}>+</div>

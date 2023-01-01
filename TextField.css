@@ -29,6 +29,21 @@
   flex-grow: 0;
 }
 
+.nudge-down,
+.nudge-up {
+  background-position: center center;
+  background-size: 24px;
+  background-repeat: no-repeat;
+}
+
+.nudge-down {
+  background-image: url("./assets/minus.png");
+}
+
+.nudge-up {
+  background-image: url("./assets/plus.png");
+}
+
 /* INPUT */
 .text-field {
   box-sizing: border-box;
