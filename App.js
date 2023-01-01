@@ -97,6 +97,8 @@ export default function App() {
       name="costBasis"
       defaultValue={trade.costBasis}
       showCurrencySign={true}
+      showNudgers={false}
+      showSlider={false}
       callback={onValueChange}
       // controlRef={useRef()}
       label="Cost Basis"
@@ -179,9 +181,8 @@ const styles = StyleSheet.create({
     gap: 16,
     fontFamily: 'Work Sans',
     fontStyle: 'normal',
-    fontWeight: 600,
+    // fontWeight: 600,
     fontSize: 14,
     lineHeight: 16,
-
   },
 });

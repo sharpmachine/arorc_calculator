@@ -9,6 +9,8 @@ const TextField = ({
     name,
     defaultValue = 0,
     showCurrencySign = false,
+    showSlider = true,
+    showNudgers = true,
     controlRef
 }) => {
     const [value, setValue] = useState(defaultValue)
@@ -52,15 +54,16 @@ const TextField = ({
         <div className="text-field-container" ref={controlRef}>
             <div className="text-field-label">{label}</div>
             <div className={`text-field ${componentReady.current ? 'ready' : 'idle'}`}>
-                {showCurrencySign ? 
-                    <div className="leading-symbol">$</div>  
-                : null }
+                {showCurrencySign && 
+                    <div className="text-field-leading-symbol">$</div>  
+                }
                 <input 
                     type="number" 
                     value={value}
                     min="0"
                     onChange={(e) => onInputChange(e.target.value)}
                     onKeyDown={onBackspace} />
+                {showNudgers &&     
                 <div className="nudgers">
                     <div 
                         className="nudger nudge-down"
@@ -68,15 +71,16 @@ const TextField = ({
                     <div 
                         className="nudger nudge-up"
                         onClick={()=> incrementUp(value)}>+</div>
-                </div>
+                </div> }
             </div>
+            {showSlider && 
             <div className="slider">
                 <Slider 
                     defaultValue={value}
                     value={value}
                     onChange={onSliderChange}
                      />
-            </div>
+            </div> }
         </div>
     );
 }
