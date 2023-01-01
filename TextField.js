@@ -11,6 +11,7 @@ const TextField = ({
     showCurrencySign = false,
     showSlider = true,
     showNudgers = true,
+    minCredit,
     controlRef
 }) => {
     const [value, setValue] = useState(defaultValue)
@@ -52,7 +53,15 @@ const TextField = ({
 
     return (
         <div className="text-field-container" ref={controlRef}>
-            <div className="text-field-label">{label}</div>
+            <div className="text-field-label">
+                <span>{label}</span>
+                {name == "credit" &&
+                    <span className="text-field-helper-text">
+                        <span className="helper-text-lead-copy">Minimum: </span>
+                        <span className="helper-text-trailing-copy">${minCredit}</span>
+                    </span>
+                }
+            </div>
             <div className={`text-field ${componentReady.current ? 'ready' : 'idle'}`}>
                 {showCurrencySign && 
                     <div className="text-field-leading-symbol">$</div>  

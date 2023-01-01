@@ -82,8 +82,13 @@
 }
 
 .text-field-label {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   flex: none;
   order: 0;
+  align-self: stretch;
   flex-grow: 0;
 }
 
@@ -93,6 +98,20 @@
   font-size: 16px;
   line-height: 19px;
   color: #111214;
+}
+
+.text-field-helper-text {
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.helper-text-lead-copy {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.helper-text-trailing-copy {
+  color: #198754;
+  font-weight: 700;
 }
 
 /* SLIDER */

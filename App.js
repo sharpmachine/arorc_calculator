@@ -15,7 +15,7 @@ export default function App() {
     credit: 0.19
   });
 
-  const [arorc, setArorc] = useState({arorc: 20, rorc: 20, minCredit: 0});
+  const [arorc, setArorc] = useState({arorc: 20, rorc: 20, minCredit: 1.09});
 
   const onValueChange = (name, value, index) => {
     setTrade({
@@ -48,7 +48,7 @@ export default function App() {
     let multiplier = 365 / trade.dte;
     let annualizedReturnOnRiskCapital = (returnOnRiskCapital * multiplier) * 100;
     //TODO: calculate min credit
-    setArorc({arorc: annualizedReturnOnRiskCapital, rorc: returnOnRiskCapital, minCredit: 0})
+    setArorc({arorc: annualizedReturnOnRiskCapital, rorc: returnOnRiskCapital, minCredit: 1.09})
   }
 
   const ShowBaseField = () => {
@@ -160,6 +160,7 @@ export default function App() {
         showCurrencySign={true}
         controlRef={useRef()}
         label="Credit"
+        minCredit={arorc.minCredit}
       />
       <div>{JSON.stringify(trade, null, 2)}</div>
       <div>{JSON.stringify(arorc, null, 2)}</div>
@@ -180,9 +181,6 @@ const styles = StyleSheet.create({
     paddingTop: 24,
     gap: 16,
     fontFamily: 'Work Sans',
-    fontStyle: 'normal',
-    // fontWeight: 600,
-    fontSize: 14,
-    lineHeight: 16,
+    fontStyle: 'normal'
   },
 });
