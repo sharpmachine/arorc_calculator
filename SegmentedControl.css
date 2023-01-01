@@ -23,14 +23,7 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 19px;
-    /* identical to box height */
-
-
     color: #111214;
-
-
-    /* Inside auto layout */
-
     flex: none;
     order: 0;
     flex-grow: 0;
@@ -50,15 +43,15 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background: #E9ECEF;
+    background-color: #E9ECEF;
     flex: none;
     order: 3;
     align-self: stretch;
     flex-grow: 1;
-    transition: background 0.1s ease;
+    transition: background-color 0.1s ease;
   }
 
   .segment.active {
-    background: #C0A047;
-    transition: background 0.1s ease;
+    background-color: #C0A047;
+    transition: background-color 0.1s ease;
   }

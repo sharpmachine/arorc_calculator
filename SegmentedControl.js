@@ -4,6 +4,7 @@ import './SegmentedControl.css';
 const SegmentedControl = ({
     segments,
     callback,
+    name,
     label,
     defaultIndex = 0,
     controlRef
@@ -13,7 +14,7 @@ const SegmentedControl = ({
 
     const onInputChange = (value, index) => {
         setActiveIndex(index);
-        callback(value, index);
+        callback(name, value, index);
     }
 
     useEffect(() => {
