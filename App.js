@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useRef, useState, useEffect } from "react";
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import  SegmentedControl from './SegmentedControl';
 import TextField from './TextField';
 import './App.css';
@@ -8,6 +8,7 @@ import good from './assets/good.png';
 import bad from './assets/bad.png';
 
 export default function App() {
+  const showOutput = false;
   
   const [trade, setTrade] = useState({
     type: 'BPS',
@@ -46,7 +47,7 @@ export default function App() {
   // } = trade
 
   const calculateArorc = () => {
-    let riskCapital = trade.spread - trade.credit; // RC formula varies based on trade type
+    let riskCapital = trade.spread - trade.credit; // TODO: RC formula varies based on trade type
     let returnOnRiskCapital = trade.credit / riskCapital;
     let multiplier = 365 / trade.dte;
     let annualizedReturnOnRiskCapital = (returnOnRiskCapital * multiplier) * 100;
@@ -165,8 +166,12 @@ export default function App() {
         label="Credit"
         minCredit={arorc.minCredit}
       />
-      <div>{JSON.stringify(trade, null, 2)}</div>
-      <div>{JSON.stringify(arorc, null, 2)}</div>
+      {showOutput &&
+        <div>
+          <div>{JSON.stringify(trade, null, 2)}</div>
+          <div>{JSON.stringify(arorc, null, 2)}</div> 
+        </div>
+      }
 
       <div className="result">
         <div className='result-arorc'>
@@ -188,10 +193,10 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F2F3EE',
+    // backgroundColor: '#F2F3EE',
     paddingLeft: 32,
     paddingRight: 32,
     paddingTop: 24,
-    gap: 16
+    gap: 16,
   },
 });
