@@ -82,11 +82,7 @@ export default function App() {
     }
   }
 
-  
-
-
-
-  function calculateArorc() {
+  const calculateArorc= ()=> {
     let riskCapital = trade.spread - trade.credit; // TODO: RC formula varies based on trade type
     let returnOnRiskCapital = trade.credit / riskCapital;
     let multiplier = 365 / trade.dte;
