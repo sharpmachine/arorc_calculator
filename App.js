@@ -8,7 +8,7 @@ import good from './assets/good.png';
 import bad from './assets/bad.png';
 
 export default function App() {
-  const showOutput = true;
+  const showOutput = false;
   
   const [trade, setTrade] = useState({
     type: 'BPS',
@@ -82,13 +82,30 @@ export default function App() {
     }
   }
 
-  const calculateArorc= ()=> {
-    let riskCapital = trade.spread - trade.credit; // TODO: RC formula varies based on trade type
+  const calculateArorc = ()=> {
+    let riskCapital, expectedArorc, s
+    if (trade.type == "BCS" || trade.type == "BPS") {
+      s = trade.spread
+      riskCapital = s - trade.credit
+      expectedArorc = 0.48
+    } else if (trade.type == "ROP") {
+      s = trade.strike
+      riskCapital = s - trade.credit
+      expectedArorc = 0.20
+    } else {
+      s = trade.costBasis
+      riskCapital = s - trade.credit;
+      expectedArorc = 0.20
+    }
+
+    console.log(expectedArorc, s, trade.strike, trade.dte)
+
     let returnOnRiskCapital = trade.credit / riskCapital;
     let multiplier = 365 / trade.dte;
     let annualizedReturnOnRiskCapital = (returnOnRiskCapital * multiplier) * 100;
+    let minCredit = ((expectedArorc * trade.dte * s)/(365 + (expectedArorc * trade.dte))).toFixed(2)
     //TODO: calculate min credit
-    setArorc({ arorc: annualizedReturnOnRiskCapital, rorc: returnOnRiskCapital, minCredit: 1.09 });
+    setArorc({ arorc: annualizedReturnOnRiskCapital, rorc: returnOnRiskCapital, minCredit: minCredit });
   }
 
   const ShowBaseField = () => {
