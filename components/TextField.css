@@ -37,11 +37,11 @@
 }
 
 .nudge-down {
-  background-image: url("./assets/minus.png");
+  background-image: url("../assets/minus.png");
 }
 
 .nudge-up {
-  background-image: url("./assets/plus.png");
+  background-image: url("../assets/plus.png");
 }
 
 /* INPUT */
