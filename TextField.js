@@ -70,7 +70,7 @@ const TextField = ({
                     type="number" 
                     value={value}
                     min="0"
-                    onChange={(e) => onInputChange(e.target.value)}
+                    onChange={(e) => onInputChange(+e.target.value)}
                     onKeyDown={onBackspace} />
                 {showNudgers &&     
                 <div className="nudgers">

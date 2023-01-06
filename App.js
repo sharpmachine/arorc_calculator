@@ -64,10 +64,9 @@ export default function App() {
   ]
 
   function onValueChange(name, value) {
-    setTrade({
-      ...trade,
-      [name]: value
-    }, calculateArorc());
+    const newValue = { ...trade, [name]: value};
+    setTrade(newValue);
+    calculateArorc(newValue)
   }
 
   function meetsMarr() {
@@ -82,29 +81,30 @@ export default function App() {
     }
   }
 
-  function calculateArorc() {
-    let riskCapital, expectedArorc, s
-    if (trade.type == "BCS" || trade.type == "BPS") {
-      s = trade.spread
-      riskCapital = s - trade.credit
-      expectedArorc = 0.48
-    } else if (trade.type == "ROP") {
-      s = trade.strike
-      riskCapital = s - trade.credit
-      expectedArorc = 0.20
+  function calculateArorc(newTrade = trade) {
+    let riskCapital, expectedArorc, s;
+    if (newTrade.type == "BCS" || newTrade.type == "BPS") {
+      s = newTrade.spread;
+      riskCapital = s - newTrade.credit;
+      expectedArorc = 0.48;
+    } else if (newTrade.type == "ROP") {
+      s = newTrade.strike;
+      riskCapital = s - newTrade.credit;
+      expectedArorc = 0.20;
     } else {
-      s = trade.costBasis
-      riskCapital = s - trade.credit;
-      expectedArorc = 0.20
+      s = newTrade.costBasis
+      riskCapital = s - newTrade.credit;
+      expectedArorc = 0.20;
     }
 
-    console.log(expectedArorc, s, trade.strike, trade.dte)
+    console.log(expectedArorc, s, newTrade.strike, newTrade.dte);
 
-    let returnOnRiskCapital = trade.credit / riskCapital;
-    let multiplier = 365 / trade.dte;
+    let returnOnRiskCapital = newTrade.credit / riskCapital;
+    let multiplier = 365 / newTrade.dte;
     let annualizedReturnOnRiskCapital = (returnOnRiskCapital * multiplier) * 100;
-    let minCredit = ((expectedArorc * trade.dte * s)/(365 + (expectedArorc * trade.dte))).toFixed(2)
-    //TODO: calculate min credit
+    let commission = 0.017
+    let minCredit = ((expectedArorc * newTrade.dte * s)/(365 + (expectedArorc * newTrade.dte)) + commission).toFixed(2);
+
     setArorc({ arorc: annualizedReturnOnRiskCapital, rorc: returnOnRiskCapital, minCredit: minCredit });
   }
 
