@@ -63,14 +63,14 @@ export default function App() {
     }
   ]
 
-  const onValueChange = (name, value) => {
+  function onValueChange(name, value) {
     setTrade({
       ...trade,
       [name]: value
     }, calculateArorc());
   }
 
-  const meetsMarr = ()=> {
+  function meetsMarr() {
     if (trade.type == "BPS" || trade.type == "BCS") {
       if (tradeReturns.arorc >= 48) {
         return true
@@ -82,7 +82,7 @@ export default function App() {
     }
   }
 
-  const calculateArorc = ()=> {
+  function calculateArorc() {
     let riskCapital, expectedArorc, s
     if (trade.type == "BCS" || trade.type == "BPS") {
       s = trade.spread
@@ -108,7 +108,7 @@ export default function App() {
     setArorc({ arorc: annualizedReturnOnRiskCapital, rorc: returnOnRiskCapital, minCredit: minCredit });
   }
 
-  const ShowBaseField = () => {
+  function ShowBaseField() {
     if (trade.type == 'BPS' || trade.type == 'BCS') {
       return <SegmentedControl
       name="spread"
@@ -200,7 +200,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: '#F2F3EE',
     paddingLeft: 32,
     paddingRight: 32,
     paddingTop: 24,
