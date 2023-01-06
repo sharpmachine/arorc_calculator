@@ -1,21 +1,21 @@
 import { useRef, useState, useEffect } from "react";
 import "./SegmentedControl.css";
 
-const SegmentedControl = ({
+function SegmentedControl({
   segments,
   callback,
   name,
   label,
   defaultIndex = 0,
   controlRef,
-}) => {
+}) {
   const [activeIndex, setActiveIndex] = useState(defaultIndex);
   const componentReady = useRef();
 
-  const onInputChange = (value, index) => {
+  function onInputChange(value, index) {
     setActiveIndex(index);
     callback(name, value, index);
-  };
+  }
 
   useEffect(() => {
     componentReady.current = true;
@@ -42,6 +42,6 @@ const SegmentedControl = ({
       </div>
     </div>
   );
-};
+}
 
 export default SegmentedControl;

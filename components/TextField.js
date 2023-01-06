@@ -3,7 +3,7 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import "./TextField.css";
 
-const TextField = ({
+function TextField({
   callback,
   label,
   name,
@@ -13,35 +13,35 @@ const TextField = ({
   showNudgers = true,
   minCredit,
   controlRef,
-}) => {
+}) {
   const [value, setValue] = useState(defaultValue);
   const componentReady = useRef();
 
-  const onInputChange = (value) => {
+  function onInputChange(value) {
     setValue(value);
     callback(name, value);
-  };
+  }
 
-  const onSliderChange = (newValue) => {
+  function onSliderChange(newValue) {
     setValue(newValue);
     callback(name, newValue);
-  };
+  }
 
-  const incrementUp = (value) => {
+  function incrementUp(value) {
     setValue(++value);
     callback(name, value);
-  };
+  }
 
-  const incrementDown = (value) => {
+  function incrementDown(value) {
     setValue(--value);
     callback(name, value);
-  };
+  }
 
-  const onBackspace = (e) => {
+  function onBackspace(e) {
     if (e.keyCode === 8) {
       setValue(0);
     }
-  };
+  }
 
   useEffect(() => {
     componentReady.current = true;
@@ -96,6 +96,6 @@ const TextField = ({
       )}
     </div>
   );
-};
+}
 
 export default TextField;
