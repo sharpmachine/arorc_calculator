@@ -79,6 +79,15 @@ export default function App() {
     });
   }
 
+  function displayMinCredit() {
+    return (
+        <div className="min-credit">
+          <span className="min-credit-lead-copy">Minimum: </span>
+          <span className={`min-credit-trailing-copy ${meetsMarr() ? "min-credit-good" : "min-credit-bad"}`}>${tradeReturns.minCredit}</span>
+        </div>
+    )
+  }
+
   function ShowBaseField() {
     if (trade.type == "BPS" || trade.type == "BCS") {
       return (
@@ -139,15 +148,21 @@ export default function App() {
         label="Days to Expiration"
       />
 
-      <TextField
-        name="credit"
-        defaultValue={trade.credit}
-        callback={onValueChange}
-        showCurrencySign={true}
-        controlRef={useRef()}
-        label="Credit"
-        minCredit={tradeReturns.minCredit}
-      />
+      <div className="credit-field">
+
+        {displayMinCredit()}
+
+        <TextField
+          name="credit"
+          defaultValue={trade.credit}
+          callback={onValueChange}
+          showCurrencySign={true}
+          controlRef={useRef()}
+          label="Credit"
+          minCredit={tradeReturns.minCredit}
+        />
+
+      </div>
       {showOutput && (
         <div>
           <div>{JSON.stringify(trade, null, 2)}</div>

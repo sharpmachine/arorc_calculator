@@ -5,6 +5,35 @@ body {
     background-size: contain;
 }
 
+.credit-field {
+    position: relative;
+}
+
+.min-credit {
+    font-size: 12px;
+    line-height: 14px;
+    position: absolute;
+    width: 100%;
+    top: 3px;
+    text-align: right;
+  }
+  
+  .min-credit-lead-copy {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .min-credit-trailing-copy {
+    font-weight: 700;
+  }
+
+ .min-credit-trailing-copy.min-credit-bad {
+    color: #DC3545;
+  }
+
+ .min-credit-trailing-copy.min-credit-good {
+    color: #198754;
+  }
+
 .result {
     display: flex;
     flex-direction: column;

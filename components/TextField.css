@@ -100,20 +100,6 @@
   color: #111214;
 }
 
-.text-field-helper-text {
-  font-size: 12px;
-  line-height: 14px;
-}
-
-.helper-text-lead-copy {
-  color: rgba(0, 0, 0, 0.6);
-}
-
-.helper-text-trailing-copy {
-  color: #198754;
-  font-weight: 700;
-}
-
 /* SLIDER */
 .slider {
   display: flex;
